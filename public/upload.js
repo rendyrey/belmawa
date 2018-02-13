@@ -24,14 +24,15 @@ $(document).ready(function() {
 			},
 
 			type : 'POST',
-			url : 'upload.php',
+			url :  "upload.php",
 			data : formData,
 			processData : false,
 			contentType : false,
 			success : function(response){
 				$('form')[0].reset();
-				$('.progress').hide();
+				// $('.progress').hide();
 				$('.msg').show();
+        
 				if(response == ""){
 					alert('File gagal di upload');
 				}else{

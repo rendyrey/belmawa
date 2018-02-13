@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Storage;
 use App\Http\Requests;
 use App\SubtopikModel;
 use App\BeritaModel;
@@ -70,8 +71,15 @@ class BeritaController extends Controller
       $berita->kutipan = "aku adalah kutipan";
       $berita->isi_berita ="ini isi berita";
       $berita->jenis_berita = "Kemenristekdikti";
-      $berita->save();
 
+      $gambar = $request->file('gambar');
+      $nama = time().'.'.$gambar->getClientOriginalExtension();
+      $destinationPath = public_path('img_berita');
+      if($gambar->move($destinationPath,$nama)){
+          echo "sukses";
+          $berita->gambar = $nama;
+          $berita->save();
+      }
     }
 
     /**
