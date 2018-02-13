@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\SubtopikModel;
+use App\BeritaModel;
 
 class BeritaController extends Controller
 {
@@ -28,6 +29,7 @@ class BeritaController extends Controller
     {
         //
         $subtopik = SubtopikModel::get();
+        $data['subtopik_opt'][''] ='';
         foreach($subtopik as $row){
           $data['subtopik_opt'][$row->id] = $row->nama_sub_topik;
         }
@@ -43,6 +45,33 @@ class BeritaController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function posting(Request $request){
+      $berita = new BeritaModel;
+      $berita->judul = $request->judul;
+      $berita->id_media = $request->media;
+      $berita->id_sub_topik = $request->subtopik;
+      // $berita->id_topik = $request->topik;
+      $berita->id_narasumber1 = $request->narasumber1;
+      $berita->id_narasumber2 = $request->narasumber2;
+      $berita->id_narasumber3 = $request->narasumber3;
+      $berita->id_narasumber4 = $request->narasumber4;
+      $berita->halaman = 7;
+      $berita->link_berita = "http://www.google.com";
+      $berita->wartawan = "aduh wartawan";
+      $berita->tone_berita = 1;
+      $berita->tone_judul = 1;
+      $berita->tone_kutipan = 1;
+      $berita->ad_value = 100;
+      $berita->news_value = 200;
+      $berita->tgl_berita = date('Y-m-d');
+      $berita->tgl_post = date('Y-m-d H:i:s');
+      $berita->kutipan = "aku adalah kutipan";
+      $berita->isi_berita ="ini isi berita";
+      $berita->jenis_berita = "Kemenristekdikti";
+      $berita->save();
+
     }
 
     /**

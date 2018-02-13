@@ -21,11 +21,24 @@
 
               {{Form::open(array('route'=>'posting','id'=>'demo=form2','class'=>'form-horizontal form-label-left','files'=>TRUE))}}
               <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Jenis Berita
+                </label>
+
+                <div class="radio">
+                  <label>
+                    {{Form::radio('jenis_berita','',true,['class'=>'flat'])}} Kemenristekdikti <br>
+                    {{Form::radio('jenis_berita','','',['class'=>'flat'])}} Non-Kemenristekdikti
+                    {{-- <input type="radio" class="flat" checked name="jenis_berita"> Kemenristekdikti<br> --}}
+                    {{-- <input type="radio" class="flat" name="jenis_berita"> Non-Kemenristekdikti --}}
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Sub Topik
                 </label>
                 <div class="col-md-8">
                   {{-- <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12"> --}}
-                  {{Form::select('subtopik',$subtopik_opt,'',['required'=>'','class'=>'form-control select_search'])}}
+                  {{Form::select('subtopik',$subtopik_opt,'',['required'=>'','class'=>'form-control select_search','data-placeholder'=>'Sub Topik'])}}
                 </div>
               </div>
               <div class="form-group">
@@ -33,7 +46,7 @@
                 </label>
                 <div class="col-md-8 col-sm-6 col-xs-12">
                   {{-- <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12"> --}}
-                  {{Form::select('topik',$subtopik_opt,'',['required'=>'','class'=>'form-control'])}}
+                  {{Form::select('topik',$subtopik_opt,'',['required'=>'','class'=>'form-control select_search','data-placeholder'=>'Topik'])}}
                 </div>
               </div>
               <div class="form-group">
@@ -49,7 +62,7 @@
                 </label>
                 <div class="col-md-8 col-sm-6 col-xs-12">
                   {{-- <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12"> --}}
-                  {{Form::select('media',$subtopik_opt,'',['required'=>'','class'=>'form-control'])}}
+                  {{Form::select('media',$subtopik_opt,'',['required'=>'','class'=>'form-control select_search','data-placeholder'=>'Sumber Media'])}}
                 </div>
               </div>
               <div class="form-group">
@@ -57,7 +70,7 @@
                 </label>
                 <div class="col-md-8 col-sm-6 col-xs-12">
                   {{-- <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12"> --}}
-                  {{Form::select('narasumber1',$subtopik_opt,'',['class'=>'form-control'])}}
+                  {{Form::select('narasumber1',$subtopik_opt,'',['class'=>'form-control select_search','data-placeholder'=>'Narasumber 1'])}}
                 </div>
               </div>
               <div class="form-group">
@@ -65,7 +78,7 @@
                 </label>
                 <div class="col-md-8 col-sm-6 col-xs-12">
                   {{-- <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12"> --}}
-                  {{Form::select('narasumber2',$subtopik_opt,'',['class'=>'form-control'])}}
+                  {{Form::select('narasumber2',$subtopik_opt,'',['class'=>'form-control select_search','data-placeholder'=>'Narasumber 2'])}}
                 </div>
               </div>
               <div class="form-group">
@@ -73,7 +86,7 @@
                 </label>
                 <div class="col-md-8 col-sm-6 col-xs-12">
                   {{-- <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12"> --}}
-                  {{Form::select('narasumber3',$subtopik_opt,'',['class'=>'form-control'])}}
+                  {{Form::select('narasumber3',$subtopik_opt,'',['class'=>'form-control select_search','data-placeholder'=>'Narasumber 3'])}}
                 </div>
               </div>
               <div class="form-group">
@@ -81,7 +94,7 @@
                 </label>
                 <div class="col-md-8 col-sm-6 col-xs-12">
                   {{-- <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12"> --}}
-                  {{Form::select('narasumber4',$subtopik_opt,'',['class'=>'form-control'])}}
+                  {{Form::select('narasumber4',$subtopik_opt,'',['class'=>'form-control select_search','data-placeholder'=>'Narasumber 4'])}}
                 </div>
               </div>
               <div class="form-group">
@@ -90,6 +103,15 @@
                 <div class="col-md-8 col-sm-6 col-xs-12">
                   {{-- <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12"> --}}
                   {{Form::file('gambar')}}
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3">
+                </label>
+                <div class="col-md-8">
+                  <div class="progress" style="display:none;">
+                    <div id="progressBar" class="progress-bar progress-bar-success" data-transitiongoal="10"></div>
+                  </div>
                 </div>
               </div>
               <div class="form-group">
@@ -104,46 +126,62 @@
                 </label>
                 <div class="col-md-8 col-sm-6 col-xs-12">
                   {{-- <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12"> --}}
-                  {{Form::select('narasumber4',$subtopik_opt,'',['class'=>'form-control'])}}
+                  {{Form::select('narasumber4',$subtopik_opt,'',['class'=>'form-control select_search','data-placeholder'=>'Wartawan'])}}
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <div id="gender" class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                      <input type="radio" name="gender" value="male"> &nbsp; Male &nbsp;
-                    </label>
-                    <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                      <input type="radio" name="gender" value="female"> Female
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
+                <label class="ckbox ckbox-primary control-label col-md-3">
+                  <span>Sumber Online</span>
                 </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                <div class="col-md-8">
+                  {{Form::checkbox('sumber_online','','',['id'=>'trigger','class'=>'flat'])}}
                 </div>
               </div>
-              <div class="ln_solid"></div>
               <div class="form-group">
-                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                  <button class="btn btn-primary" type="button">Cancel</button>
-                  <button class="btn btn-primary" type="reset">Reset</button>
-                  <button type="submit" class="btn btn-success">Submit</button>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Halaman
+                </label>
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                  {{Form::text('halaman','',['class'=>'form-control col-md-7 col-xs-12','placeholder'=>'Halaman'])}}
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Link Berita
+                </label>
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                  {{Form::text('link_berita','',['class'=>'form-control col-md-7 col-xs-12','placeholder'=>'Link Berita'])}}
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Ad Value
+                </label>
+                <div class="input-group col-md-6">
+                  <span class="input-group-addon col-md3">Rp</span>
+                  {{Form::text('ad_value','',['class'=>'form-control','placeholder'=>'Ad Value','id'=>'auto_number1'])}}
                 </div>
               </div>
 
-            </form>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">News Value
+                </label>
+                <div class="input-group col-md-6">
+                  <span class="input-group-addon">Rp</span>
+                  {{Form::text('news_value','',['class'=>'form-control','placeholder'=>'News Value','id'=>'auto_number2'])}}
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                  <div class="col-md-6 col-md-offset-3" style="">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                  </div>
+                </div>
+
+              {{Form::close()}}
+            </div>
           </div>
         </div>
       </div>
+
+
     </div>
-
-
   </div>
-</div>
-<!-- /page content -->
-@include('footer')
+  <!-- /page content -->
+  @include('footer')
