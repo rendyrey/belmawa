@@ -53,6 +53,8 @@
   <!-- select 2 -->
   <script src="{{url('public/lib/select2/select2.js')}}"></script>
 <script src="{{url('public/lib/jquery-autosize/autosize.js')}}"></script>
+
+<script src="{{url('public/upload.js')}}"></script>
 <script>
 
   $(function(){
